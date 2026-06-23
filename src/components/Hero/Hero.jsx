@@ -52,7 +52,7 @@ const Hero = () => {
                     loading="eager"
                     style={{
                       width: '80%', /* good size inside the circle */
-                      height: 'auto', 
+                      height: 'auto',
                       maxHeight: '95%', /* prevent it from being too tall and hitting the top edge hard */
                       objectFit: 'contain',
                       objectPosition: 'bottom',
