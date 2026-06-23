@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Disallow access to dashboard since it requires authentication
+Disallow: /dashboard
+
+# Specify the sitemap location (Update the domain when deploying)
+Sitemap: https://abhishicommarceclasses.in/sitemap.xml

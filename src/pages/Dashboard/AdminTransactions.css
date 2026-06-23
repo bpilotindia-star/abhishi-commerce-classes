@@ -1,0 +1,166 @@
+.admin-transactions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.transactions-header-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.transactions-title-area h2 {
+  margin: 0 0 4px 0;
+  font-size: 20px;
+  color: #1e293b;
+}
+
+.transactions-title-area p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.transactions-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-income, .btn-expense {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: white;
+}
+
+.btn-income {
+  background: #10b981;
+}
+
+.btn-income:hover {
+  background: #059669;
+}
+
+.btn-expense {
+  background: #ef4444;
+}
+
+.btn-expense:hover {
+  background: #dc2626;
+}
+
+/* Summary Cards */
+.transactions-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.summary-card {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.summary-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.income-card .summary-icon {
+  background: #d1fae5;
+  color: #10b981;
+}
+
+.expense-card .summary-icon {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.balance-card .summary-icon {
+  background: #dbeafe;
+  color: #3b82f6;
+}
+
+.summary-details span {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.summary-details h3 {
+  margin: 4px 0 0 0;
+  font-size: 24px;
+  color: #1e293b;
+}
+
+/* Sheet / Table */
+.transactions-sheet {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  overflow: hidden;
+  padding: 20px;
+}
+
+.type-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-income {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badge-expense {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.note-cell {
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Specific modal buttons */
+.bg-green { background: #10b981; }
+.bg-green:hover { background: #059669; }
+.bg-red { background: #ef4444; }
+.bg-red:hover { background: #dc2626; }
+
+@media (max-width: 768px) {
+  .transactions-header-panel {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .transactions-summary {
+    grid-template-columns: 1fr;
+  }
+}

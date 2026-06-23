@@ -1,0 +1,151 @@
+.batch-manager-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.batch-manager-header {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1f5f9;
+  border: none;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  transition: all 0.2s;
+}
+
+.btn-back:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+.batch-header-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.batch-header-info h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #1e293b;
+}
+
+.batch-category-badge {
+  background: #f1f5f9;
+  color: #3b82f6;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.batch-manager-tabs {
+  display: flex;
+  gap: 8px;
+  background: white;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  overflow-x: auto;
+  justify-content: space-between;
+}
+
+.tab-btn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: #64748b;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  background: #f8fafc;
+  color: #1e293b;
+}
+
+.tab-btn.active {
+  background: #eff6ff;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.batch-manager-content {
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  min-height: 400px;
+}
+
+.tab-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: #64748b;
+  padding: 40px;
+}
+
+.tab-placeholder h3 {
+  margin: 16px 0 8px 0;
+  color: #1e293b;
+  font-size: 20px;
+}
+
+.tab-placeholder p {
+  margin: 0;
+  font-size: 15px;
+  max-width: 400px;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .batch-manager-content {
+    padding: 16px;
+  }
+  .batch-manager-header {
+    padding: 16px;
+  }
+  .batch-header-info h2 {
+    font-size: 20px;
+  }
+  .tab-btn {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+  .batch-manager-tabs {
+    flex-direction: column;
+  }
+}

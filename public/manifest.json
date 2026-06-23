@@ -1,0 +1,22 @@
+{
+  "name": "Abhishi Commerce Classes",
+  "short_name": "Abhishi",
+  "description": "Expert guidance for Class 11th, 12th, CA Foundation & B.Com in Bhagalpur.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFF9EB",
+  "theme_color": "#F59E0B",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

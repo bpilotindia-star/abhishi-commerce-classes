@@ -1,0 +1,110 @@
+.why-choose-us-section {
+  padding: 80px 0;
+  background-color: #FAFBFF; /* Slightly different background to distinguish sections, or #ffffff */
+}
+
+.why-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.why-header h2 {
+  font-family: var(--font-primary, 'Poppins', sans-serif);
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--text-dark, #1E293B);
+  margin-bottom: 12px;
+}
+
+.highlight-yellow {
+  color: var(--accent-yellow, #FFC107);
+}
+
+.why-header p {
+  font-size: 16px;
+  color: var(--text-gray, #64748B);
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 1000px; /* Keep it constrained for a 2x2 look */
+  margin: 0 auto;
+}
+
+.why-card {
+  background: #ffffff;
+  border: 1px solid #F1F5F9;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.why-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.why-icon-wrapper {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.why-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Icon Colors & Backgrounds */
+.text-blue { color: #3b82f6; }
+.bg-blue-light { background-color: #eff6ff; }
+
+.text-green { color: #10b981; }
+.bg-green-light { background-color: #ecfdf5; }
+
+.text-purple { color: #8b5cf6; }
+.bg-purple-light { background-color: #f5f3ff; }
+
+.text-yellow { color: #f59e0b; }
+.bg-yellow-light { background-color: #fffbeb; }
+
+.why-card-content h3 {
+  font-family: var(--font-primary, 'Poppins', sans-serif);
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.why-card-content p {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+  .why-header h2 {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .why-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

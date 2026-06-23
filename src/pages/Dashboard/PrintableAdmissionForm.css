@@ -1,0 +1,333 @@
+.printable-wrapper {
+  background-color: #f1f5f9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.print-actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.print-actions button {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+
+.btn-back {
+  background: white;
+  color: #64748b;
+  border: 1px solid #cbd5e1 !important;
+}
+
+.btn-print {
+  background: #1e293b;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.a4-sheet {
+  background: white;
+  width: 210mm;
+  min-height: 297mm;
+  padding: 15mm;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+  color: #000;
+  position: relative;
+}
+
+/* Premium Header */
+.premium-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #1e3a8a;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.logo-section {
+  width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.institute-logo {
+  width: 100%;
+  max-width: 80px;
+  height: auto;
+  object-fit: contain;
+}
+
+.institute-info {
+  flex-grow: 1;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.est-badge {
+  font-size: 11px;
+  font-weight: bold;
+  color: #64748b;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.institute-info h1 {
+  font-size: 28px;
+  font-weight: 900;
+  margin: 0;
+  color: #1e3a8a;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.tagline {
+  font-size: 14px;
+  font-style: italic;
+  font-weight: bold;
+  margin: 4px 0;
+  color: #b45309;
+}
+
+.address {
+  font-size: 13px;
+  color: #475569;
+  margin: 0;
+}
+
+.form-meta {
+  width: 100px;
+  font-size: 12px;
+  text-align: right;
+  line-height: 1.8;
+}
+
+.meta-item {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.underline {
+  border-bottom: 1px dashed #94a3b8;
+  display: inline-block;
+  min-width: 60px;
+  text-align: center;
+}
+
+/* Form Title Bar */
+.form-title-bar {
+  background: #1e3a8a;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.form-title-bar h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.form-title-bar span {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* Form Body & Grid */
+.form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.top-section {
+  display: flex;
+  gap: 20px;
+}
+
+.course-details-box {
+  flex-grow: 1;
+}
+
+.photo-box {
+  width: 35mm;
+  height: 45mm;
+  border: 1px dashed #94a3b8;
+  padding: 3px;
+}
+
+.photo-inner {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 11px;
+  color: #94a3b8;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: bold;
+  background: #e2e8f0;
+  padding: 4px 10px;
+  margin-bottom: 10px;
+  color: #1e293b;
+  border-left: 4px solid #1e3a8a;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 15px;
+}
+
+.span-2 {
+  grid-column: span 2;
+}
+
+.span-3 {
+  grid-column: span 3;
+}
+
+/* Data Fields */
+.data-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.data-field label {
+  font-size: 11px;
+  font-weight: bold;
+  color: #475569;
+  text-transform: uppercase;
+}
+
+.data-value {
+  border: 1px solid #cbd5e1;
+  padding: 8px 10px;
+  min-height: 32px;
+  font-size: 14px;
+  font-family: 'Courier New', Courier, monospace; /* Typewriter feel */
+  font-weight: bold;
+  background: #f8fafc;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.check-boxes {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.box {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #64748b;
+  margin-right: 5px;
+  background: white;
+}
+
+/* Declarations */
+.declaration-box p {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #334155;
+  text-align: justify;
+  margin-top: 0;
+}
+
+.signature-area {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  padding: 0 20px;
+}
+
+.sig-block {
+  text-align: center;
+}
+
+.sig-line {
+  width: 200px;
+  border-top: 1px solid black;
+  margin-bottom: 8px;
+}
+
+.sig-block label {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Office Use */
+.office-use {
+  margin-top: 30px;
+  border: 2px dashed #94a3b8;
+  padding: 15px;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .printable-wrapper {
+    background: white;
+    padding: 0;
+  }
+  .a4-sheet {
+    box-shadow: none;
+    padding: 10mm;
+    width: 100%;
+    height: auto;
+  }
+}

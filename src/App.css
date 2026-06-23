@@ -1,0 +1,20 @@
+/* App-level styles - minimal, mostly handled by component CSS */
+.app {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+@keyframes pageFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.page-animate {
+  animation: pageFadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
