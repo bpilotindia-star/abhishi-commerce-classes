@@ -8,7 +8,8 @@ import {
   Package, 
   ArrowUpRight, 
   ArrowDownRight,
-  TrendingUp
+  TrendingUp,
+  UserMinus
 } from 'lucide-react';
 import './AdminHome.css';
 
@@ -22,6 +23,7 @@ const initialCoursesData = [
 const AdminHome = ({ setActiveMenu }) => {
   const [recentTransactions, setRecentTransactions] = useState([]);
   const [pendingCount, setPendingCount] = useState(0);
+  const [uncategorizedCount, setUncategorizedCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -45,6 +47,15 @@ const AdminHome = ({ setActiveMenu }) => {
         const transSnap = await getDocs(qTrans);
         const transData = transSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         setRecentTransactions(transData);
+
+        // 3. Fetch Uncategorized Students
+        const qUncat = query(
+          collection(db, 'users'),
+          where('role', '==', 'Student'),
+          where('enrollmentStatus', '==', 'none')
+        );
+        const uncatSnap = await getDocs(qUncat);
+        setUncategorizedCount(uncatSnap.size);
 
       } catch (error) {
         console.error("Error fetching admin home data:", error);
@@ -92,6 +103,16 @@ const AdminHome = ({ setActiveMenu }) => {
           <div className="widget-info">
             <span className="widget-title">Active Batches</span>
             <h3 className="widget-value">{initialCoursesData.length}</h3>
+          </div>
+        </div>
+
+        <div className="widget-card">
+          <div className="widget-icon" style={{ background: '#fce7f3', color: '#db2777' }}>
+            <UserMinus size={24} />
+          </div>
+          <div className="widget-info">
+            <span className="widget-title">Uncategorized Students</span>
+            <h3 className="widget-value">{uncategorizedCount}</h3>
           </div>
         </div>
       </div>

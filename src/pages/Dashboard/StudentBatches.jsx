@@ -1,6 +1,7 @@
 import React from 'react';
-import { IndianRupee, Book } from 'lucide-react';
+import { IndianRupee, Book, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import '../../components/Courses/Courses.css'; // Reusing the same CSS for styling
 
 const studentBatchesData = [
@@ -35,9 +36,52 @@ const studentBatchesData = [
 
 const StudentBatches = () => {
   const navigate = useNavigate();
+  const { enrollmentStatus } = useAuth();
 
   return (
     <div className="student-batches-section" style={{ padding: '0' }}>
+      {enrollmentStatus === 'none' && (
+        <div className="demo-banner" style={{
+          background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
+          border: '1px solid #bfdbfe',
+          borderRadius: '12px',
+          padding: '24px',
+          marginBottom: '32px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '16px'
+        }}>
+          <div>
+            <h3 style={{ color: '#1e3a8a', fontSize: '18px', marginBottom: '8px', fontWeight: '600' }}>Not sure about classes?</h3>
+            <p style={{ color: '#3b82f6', fontSize: '14px', margin: 0 }}>Apply for a free demo class to experience our teaching methodology.</p>
+          </div>
+          <button
+            onClick={() => navigate('/demo-classes')}
+            style={{
+              background: '#2563eb',
+              color: 'white',
+              border: 'none',
+              padding: '10px 20px',
+              borderRadius: '8px',
+              fontWeight: '600',
+              fontSize: '14px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              transition: 'all 0.2s',
+              boxShadow: '0 4px 6px -1px rgba(37, 99, 235, 0.2)'
+            }}
+            onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+            onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+          >
+            Apply for Demo <ArrowRight size={16} />
+          </button>
+        </div>
+      )}
+
       <div className="courses-header" style={{ marginBottom: '24px' }}>
         <div className="courses-header-left">
           <h2>Available Batches</h2>
@@ -67,8 +111,8 @@ const StudentBatches = () => {
                   {course.lessons}
                 </div>
               </div>
-              
-              <button 
+
+              <button
                 onClick={() => navigate('/enroll', { state: { batch: course } })}
                 style={{
                   width: '100%',

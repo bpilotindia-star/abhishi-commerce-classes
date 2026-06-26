@@ -147,3 +147,13 @@
 .auth-footer a:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+  .auth-container {
+    padding-top: 80px;
+  }
+  .auth-back-btn {
+    top: 16px;
+    left: 16px;
+  }
+}

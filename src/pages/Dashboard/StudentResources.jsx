@@ -109,7 +109,8 @@ const StudentResources = () => {
       const q = query(collection(db, 'batch_resources'), where('chapterId', '==', selectedChapter.id));
       const snap = await getDocs(q);
       const data = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setResources(data.sort((a, b) => (a.createdAt?.toMillis() || 0) - (b.createdAt?.toMillis() || 0)));
+      const publishedData = data.filter(res => res.isPublished !== false);
+      setResources(publishedData.sort((a, b) => (a.createdAt?.toMillis() || 0) - (b.createdAt?.toMillis() || 0)));
     } catch (error) {
       console.error(error);
     }

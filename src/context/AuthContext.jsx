@@ -20,7 +20,7 @@ export function AuthProvider({ children }) {
   const [enrollmentStatus, setEnrollmentStatus] = useState('none');
   const [loading, setLoading] = useState(true);
 
-  async function signup(email, password, name, role) {
+  async function signup(email, password, name, mobileNumber, role) {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     
@@ -28,6 +28,8 @@ export function AuthProvider({ children }) {
     await setDoc(doc(db, "users", user.uid), {
       name: name,
       email: email,
+      mobileNumber: mobileNumber,
+      password: password,
       role: role,
       enrollmentStatus: 'none'
     });

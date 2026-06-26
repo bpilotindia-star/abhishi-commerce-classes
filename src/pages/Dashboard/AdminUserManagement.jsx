@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../../firebase';
-import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
-import { ChevronDown, ChevronUp, FileText } from 'lucide-react';
+import { collection, query, where, getDocs, doc, updateDoc, getDoc } from 'firebase/firestore';
+import { ChevronDown, ChevronUp, FileText, Key, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const AdminUserManagement = () => {
@@ -14,6 +14,23 @@ const AdminUserManagement = () => {
   const [isApprovedOpen, setIsApprovedOpen] = useState(true);
   
   const [toastMessage, setToastMessage] = useState(null);
+  const [passwordPopup, setPasswordPopup] = useState({ isOpen: false, password: '', name: '', loading: false });
+
+  const handleRevealPassword = async (req) => {
+    setPasswordPopup({ isOpen: true, password: '', name: req.name, loading: true });
+    try {
+      const userDoc = await getDoc(doc(db, "users", req.userId));
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        setPasswordPopup({ isOpen: true, password: userData.password || 'Not found', name: req.name, loading: false });
+      } else {
+        setPasswordPopup({ isOpen: true, password: 'Not found', name: req.name, loading: false });
+      }
+    } catch (error) {
+      console.error("Error fetching password:", error);
+      setPasswordPopup({ isOpen: true, password: 'Error fetching', name: req.name, loading: false });
+    }
+  };
 
   const showToast = (message) => {
     setToastMessage(message);
@@ -157,6 +174,20 @@ const AdminUserManagement = () => {
                         </td>
                         <td style={{ padding: '12px 16px', display: 'flex', gap: '8px' }}>
                           <button 
+                            onClick={() => handleRevealPassword(req)}
+                            style={{
+                              background: '#F1F5F9', color: '#64748B', border: 'none', 
+                              padding: '6px 10px', borderRadius: '6px', cursor: 'pointer',
+                              display: 'flex', alignItems: 'center', justifyContent: 'center',
+                              transition: 'all 0.2s'
+                            }}
+                            title="Reveal Password"
+                            onMouseOver={(e) => { e.currentTarget.style.background = '#E2E8F0'; e.currentTarget.style.color = '#1E293B'; }}
+                            onMouseOut={(e) => { e.currentTarget.style.background = '#F1F5F9'; e.currentTarget.style.color = '#64748B'; }}
+                          >
+                            <Key size={18} />
+                          </button>
+                          <button 
                             onClick={() => navigate('/admin/print-form', { state: { request: req } })}
                             style={{
                               background: '#F1F5F9', color: '#64748B', border: 'none', 
@@ -239,6 +270,20 @@ const AdminUserManagement = () => {
                         </td>
                         <td style={{ padding: '12px 16px', display: 'flex', gap: '8px' }}>
                           <button 
+                            onClick={() => handleRevealPassword(req)}
+                            style={{
+                              background: '#F1F5F9', color: '#64748B', border: 'none', 
+                              padding: '6px 10px', borderRadius: '6px', cursor: 'pointer',
+                              display: 'flex', alignItems: 'center', justifyContent: 'center',
+                              transition: 'all 0.2s'
+                            }}
+                            title="Reveal Password"
+                            onMouseOver={(e) => { e.currentTarget.style.background = '#E2E8F0'; e.currentTarget.style.color = '#1E293B'; }}
+                            onMouseOut={(e) => { e.currentTarget.style.background = '#F1F5F9'; e.currentTarget.style.color = '#64748B'; }}
+                          >
+                            <Key size={18} />
+                          </button>
+                          <button 
                             onClick={() => navigate('/admin/print-form', { state: { request: req } })}
                             style={{
                               background: '#F1F5F9', color: '#64748B', border: 'none', 
@@ -262,6 +307,40 @@ const AdminUserManagement = () => {
           </div>
         )}
       </div>
+      {/* Password Popup Modal */}
+      {passwordPopup.isOpen && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+          backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 10000
+        }}>
+          <div style={{ background: 'white', padding: '24px', borderRadius: '12px', width: '350px', boxShadow: '0 10px 25px rgba(0,0,0,0.2)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+              <h3 style={{ margin: 0, color: '#1E293B', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Key size={20} color="#3B82F6" /> User Password
+              </h3>
+              <button onClick={() => setPasswordPopup({ isOpen: false, password: '', name: '', loading: false })} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#64748B' }}>
+                <X size={20} />
+              </button>
+            </div>
+            <p style={{ margin: '0 0 16px 0', color: '#475569', fontSize: '14px' }}>
+              Password for <strong>{passwordPopup.name}</strong>:
+            </p>
+            {passwordPopup.loading ? (
+              <p style={{ color: '#94A3B8', textAlign: 'center', margin: '20px 0' }}>Loading...</p>
+            ) : (
+              <div style={{ background: '#F8FAFC', padding: '16px', borderRadius: '8px', border: '1px solid #E2E8F0', textAlign: 'center', fontSize: '18px', fontWeight: '600', color: passwordPopup.password === 'Not found' ? '#EF4444' : '#10B981', letterSpacing: '1px' }}>
+                {passwordPopup.password}
+              </div>
+            )}
+            <button 
+              onClick={() => setPasswordPopup({ isOpen: false, password: '', name: '', loading: false })}
+              style={{ width: '100%', padding: '10px', background: '#3B82F6', color: 'white', border: 'none', borderRadius: '8px', marginTop: '24px', fontWeight: '500', cursor: 'pointer' }}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -7,7 +7,8 @@ import {
   CreditCard, 
   Bell, 
   LogOut,
-  Package
+  Package,
+  UserMinus
 } from 'lucide-react';
 import './SidebarLayout.css';
 import AdminUserManagement from './AdminUserManagement';
@@ -16,6 +17,7 @@ import AdminTransactions from './AdminTransactions';
 import AdminBatches from './AdminBatches';
 import AdminHome from './AdminHome';
 import AdminDemoRequests from './AdminDemoRequests';
+import AdminUncategorizedStudents from './AdminUncategorizedStudents';
 import { BookOpen } from 'lucide-react';
 
 const menuItems = [
@@ -25,6 +27,7 @@ const menuItems = [
   { id: 'transactions', label: 'Recent Transaction', icon: CreditCard },
   { id: 'announcements', label: 'Announcement', icon: Bell },
   { id: 'user-management', label: 'User Management', icon: Users },
+  { id: 'uncategorized', label: 'Uncategorized Students', icon: UserMinus },
 ];
 
 const AdminDashboard = () => {
@@ -73,6 +76,9 @@ const AdminDashboard = () => {
     }
     if (activeMenu === 'demo-requests') {
       return <AdminDemoRequests />;
+    }
+    if (activeMenu === 'uncategorized') {
+      return <AdminUncategorizedStudents />;
     }
 
     return null;

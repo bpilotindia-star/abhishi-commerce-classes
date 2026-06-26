@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../../firebase';
 import { collection, query, where, getDocs, addDoc, serverTimestamp, orderBy, deleteDoc, doc, updateDoc } from 'firebase/firestore';
-import { Folder, FileText, Plus, ChevronRight, X, ExternalLink, Edit2, Trash2 } from 'lucide-react';
+import { Folder, FileText, Plus, ChevronRight, X, ExternalLink, Edit2, Trash2, Eye, EyeOff } from 'lucide-react';
 import './AdminBatchResources.css';
 
 const AdminBatchResources = ({ batchId }) => {
@@ -132,6 +132,7 @@ const AdminBatchResources = ({ batchId }) => {
             chapterId: selectedChapter.id,
             title: formData.title,
             link: formData.link,
+            isPublished: true,
             createdAt: serverTimestamp()
           });
           fetchResources();
@@ -163,6 +164,19 @@ const AdminBatchResources = ({ batchId }) => {
     } catch (err) {
       console.error(err);
       alert('Failed to delete.');
+    }
+  };
+
+  const handleTogglePublish = async (e, res) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      const newStatus = res.isPublished === false ? true : false;
+      await updateDoc(doc(db, 'batch_resources', res.id), { isPublished: newStatus });
+      fetchResources();
+    } catch (err) {
+      console.error(err);
+      alert('Failed to update publish status.');
     }
   };
 
@@ -293,6 +307,9 @@ const AdminBatchResources = ({ batchId }) => {
                         <span>PDF Document</span>
                       </div>
                       <div className="list-actions">
+                        <button className="action-btn" onClick={(e) => handleTogglePublish(e, res)} title={res.isPublished !== false ? "Unpublish" : "Publish"}>
+                          {res.isPublished !== false ? <Eye size={16} color="#10b981" /> : <EyeOff size={16} color="#94a3b8" />}
+                        </button>
                         <button className="action-btn edit" onClick={(e) => { e.preventDefault(); e.stopPropagation(); openPopup('resource', res); }}><Edit2 size={16}/></button>
                         <button className="action-btn delete" onClick={(e) => handleDelete(e, 'resource', res.id)}><Trash2 size={16}/></button>
                         <ExternalLink size={18} color="#94a3b8" style={{marginLeft: '8px'}} />

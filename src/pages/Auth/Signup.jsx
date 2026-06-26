@@ -6,6 +6,7 @@ import './Auth.css';
 
 const Signup = () => {
   const [name, setName] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -26,7 +27,7 @@ const Signup = () => {
     try {
       setError('');
       setLoading(true);
-      await signup(email, password, name, 'Student');
+      await signup(email, password, name, mobileNumber, 'Student');
       // Removed direct navigate to avoid race condition with AuthContext state
     } catch (err) {
       setError('Failed to create an account. ' + err.message);
@@ -53,6 +54,15 @@ const Signup = () => {
               required 
               value={name}
               onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label>Mobile Number</label>
+            <input 
+              type="tel" 
+              required 
+              value={mobileNumber}
+              onChange={(e) => setMobileNumber(e.target.value)}
             />
           </div>
           <div className="form-group">
